@@ -7,7 +7,7 @@ Module Module1
 
 
     Function CompletionReadLine() As String
-        Dim words() = New String() {"anagrafica", "docenti", "compiti", "argomenti", "voti"}
+        Dim words() = New String() {"anagrafica", "docenti", "compiti", "argomenti", "valutazioni"}
 
         Dim sb = New StringBuilder()
         While True
@@ -64,6 +64,14 @@ Module Module1
                 Case "compiti"
                     For Each compito In scheda.Compiti()
                         Console.WriteLine(compito.desMateria + ": " + compito.desCompiti + " " + compito.docente)
+                    Next
+                Case "valutazioni"
+                    For Each voto In scheda.VotiGiornalieri()
+                        Console.WriteLine(voto.codVoto + " " + voto.desMateria + " " + voto.desCommento + voto.docente)
+                    Next
+                Case "assenze"
+                    For Each assenza In scheda.Assenze()
+                        Console.WriteLine(assenza.datAssenza + If(assenza.flgDaGiustificare, ", giustificata il " + assenza.datGiustificazione, " (da giustificare)"))
                     Next
             End Select
         End While
