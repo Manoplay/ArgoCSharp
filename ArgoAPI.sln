@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ArgoAPI", "ArgoAPI\ArgoAPI.vbproj", "{4021BE9D-7CA8-41B5-A70B-735CA449D697}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ArgoCLI", "ArgoCLI\ArgoCLI.vbproj", "{E8333863-ED86-4A99-91F5-D1E637E97BD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4021BE9D-7CA8-41B5-A70B-735CA449D697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4021BE9D-7CA8-41B5-A70B-735CA449D697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4021BE9D-7CA8-41B5-A70B-735CA449D697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4021BE9D-7CA8-41B5-A70B-735CA449D697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8333863-ED86-4A99-91F5-D1E637E97BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8333863-ED86-4A99-91F5-D1E637E97BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8333863-ED86-4A99-91F5-D1E637E97BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8333863-ED86-4A99-91F5-D1E637E97BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {009A0720-E5CA-460B-9211-477374686479}
+	EndGlobalSection
+EndGlobal
