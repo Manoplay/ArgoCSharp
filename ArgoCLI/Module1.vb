@@ -7,7 +7,7 @@ Module Module1
 
 
     Function CompletionReadLine() As String
-        Dim words() = New String() {"anagrafica", "docenti", "compiti", "argomenti", "valutazioni"}
+        Dim words() = New String() {"anagrafica", "docenti", "compiti", "argomenti", "valutazioni", "esci"}
 
         Dim sb = New StringBuilder()
         While True
@@ -25,6 +25,8 @@ Module Module1
                     Console.CursorLeft = 6
                     Console.Write(chances.First())
                 End If
+            ElseIf cki.Key = ConsoleKey.Backspace Then
+                sb.Remove(sb.Length - 1, 1)
             ElseIf cki.Key = ConsoleKey.Enter Then
                 Console.WriteLine()
                 Return sb.ToString()
@@ -36,13 +38,23 @@ Module Module1
     End Function
 
     Sub Main()
-        Console.Write("Scuola: ")
-        Dim scuola As String = Console.ReadLine()
-        Console.Write("Username: ")
-        Dim username As String = Console.ReadLine()
-        Console.Write("Password: ")
-        Dim password As String = Console.ReadLine()
-        sessione = New Argo.Sessione(scuola, username, password)
+
+        If Not My.Settings.AuthToken = "" Then
+            sessione = New Argo.Sessione(My.Settings.AuthToken)
+        Else
+            Console.Write("Scuola: ")
+            Dim scuola As String = Console.ReadLine()
+            Console.Write("Username: ")
+            Dim username As String = Console.ReadLine()
+            Console.Write("Password: ")
+            Dim password As String = Console.ReadLine()
+            sessione = New Argo.Sessione(scuola, username, password)
+            If Not sessione.Token = "" Then
+                Console.WriteLine("Accesso eseguito")
+                My.Settings.AuthToken = sessione.Token
+                My.Settings.Save()
+            End If
+        End If
         scheda = New Argo.Scheda(sessione.Token)
         While True
             Console.Write("ARGO> ")
@@ -71,8 +83,18 @@ Module Module1
                     Next
                 Case "assenze"
                     For Each assenza In scheda.Assenze()
-                        Console.WriteLine(assenza.datAssenza + If(assenza.flgDaGiustificare, ", giustificata il " + assenza.datGiustificazione, " (da giustificare)"))
+                        If assenza.codEvento = "A" Then
+                            Console.WriteLine(assenza.datAssenza + If(assenza.flgDaGiustificare, ", giustificata il " + assenza.datGiustificazione, " (da giustificare)") + " " + assenza.desAssenza)
+                        Else
+                            Console.WriteLine(assenza.datAssenza + If(assenza.codEvento = "I", " (ingresso) ", " (uscita) ") + assenza.desAssenza)
+                        End If
                     Next
+                Case "logout"
+                    My.Settings.AuthToken = ""
+                    Main()
+                    Return
+                Case "esci"
+                    End
             End Select
         End While
     End Sub

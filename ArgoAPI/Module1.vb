@@ -296,6 +296,11 @@ Public Class Sessione
         Token = s.Value(Of String)("token")
         Alunno = TipoUtente.Alunno
     End Sub
+
+    Public Sub New(authToken As String)
+        Token = authToken
+        Alunno = TipoUtente.Alunno
+    End Sub
 End Class
 
 Module ArgoAPI
